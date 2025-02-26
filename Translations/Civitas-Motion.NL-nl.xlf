@@ -2,7 +2,45 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-US" target-language="NL-nl" original="Civitas-Motion.g.xlf">
     <body>
-      <group id="body"></group>
+      <group id="body">
+        <trans-unit id="TableExtension 2220523729 - Field 2501710577 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Specifies if the journal should be automatic set to released.</source>
+          <target>Dit geeft aan of het dagboek automatisch vrijgegeven moet worden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionAutomaticRelease - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 2501710577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Automatic Releasse</source>
+          <target>Automatisch vrijgeven</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionAutomaticRelease - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 817927179 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Specifies the Journal Batch Name to be used</source>
+          <target>Hier geeft u aan welk dagboekbatch voor de koppeling gebruikt gaat worden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Source has been modified.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionJournalBatchName - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 817927179 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Journal Batch Name</source>
+          <target>Dagboekbatch</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionJournalBatchName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 3972903871 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Specifies the Journal Template Name to be used</source>
+          <target>Hier geeft u aan welk dagboeksjabloon voor de koppeling gebruikt gaat worden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionJournalTemplateName - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 3972903871 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Journal Template Name</source>
+          <target>Dagboeksjabloon</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionJournalTemplateName - Property Caption</note>
+        </trans-unit>
+      </group>
     </body>
   </file>
 </xliff>
