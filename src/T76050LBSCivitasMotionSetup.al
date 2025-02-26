@@ -14,6 +14,24 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
             ToolTip = 'Specifies the Journal Template Name to be used';
             AllowInCustomizations = Always;
 
+            Trigger OnValidate()
+            var
+                GenJournalBatch: Record "Gen. Journal Batch";
+                EasyFundersBatchDescriptionLbl: Label 'EasyFunders Journal';
+            begin
+                if Rec.LBSMotionJournalTemplateName <> '' then begin
+                    GenJournalBatch.SetRange("Journal Template Name", Rec.LBSMotionJournalTemplateName);
+                    GenJournalBatch.SetRange(Name, Rec.LBSMotionJournalTemplateName);
+                    if not GenJournalBatch.FindFirst() then begin
+                        GenJournalBatch.Reset();
+                        GenJournalBatch.Init();
+                        GenJournalBatch."Journal Template Name" := Rec.LBSMotionJournalTemplateName;
+                        GenJournalBatch.Name := Rec.LBSMotionJournalTemplateName;
+                        GenJournalBatch.Description := MotionBatchDescriptionLbl;
+                        GenJournalBatch.Insert(true);
+                    end;
+                end;
+            end;
         }
         field(76001; LBSMotionJournalBatchName; Code[10])
         {
@@ -31,4 +49,7 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
             AllowInCustomizations = Always;
         }
     }
+
+    var
+        MotionBatchDescriptionLbl: Label 'Motion Journal';
 }

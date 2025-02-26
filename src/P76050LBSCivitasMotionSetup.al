@@ -17,6 +17,7 @@ pageextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
                 field(LBSMotionJournalBatchName; Rec.LBSMotionJournalBatchName)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(LBSMotionAutomaticRelease; Rec.LBSMotionAutomaticRelease)
                 {
