@@ -1,0 +1,40 @@
+{
+  "id": "4bee7e91-c095-46e4-a473-cdf6c3bc036e",
+  "name": "Civitas-Motion",
+  "publisher": "Lumen Business Solutions B.V.",
+  "version": "25.0.23364.5",
+  "brief": "This extension is a part of the Civitas suite and is used to manage the Motion application.",
+  "description": "This extension is a part of the Civitas suite and is used to manage the Motion application. It is used to create General Ledger entries for the Motion application.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "./img/lumenbs.jpg",
+  "dependencies": [
+    {
+      "id": "3b3f382a-c89c-48ec-92cc-00c8c6d9de2b",
+      "name": "Civitas",
+      "publisher": "Lumen Business Solutions B.V.",
+      "version": "25.0.23364.13"
+    }
+  ],
+  "screenshots": [],
+  "platform": "25.0.0.0",
+  "application": "25.0.0.0",
+  "idRanges": [
+    {
+      "from": 76050,
+      "to": 76099
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "14.0",
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile"
+  ]
+}
