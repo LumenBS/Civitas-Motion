@@ -1,12 +1,11 @@
 namespace CivitasMotion.CivitasMotion;
 using Microsoft.Finance.GeneralLedger.Journal;
 
-
 tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
 {
     fields
     {
-        field(76000; LBSMotionJournalTemplateName; Code[10])
+        field(76050; LBSMotionJournalTemplateName; Code[10])
         {
             Caption = 'Journal Template Name';
             DataClassification = SystemMetadata;
@@ -30,10 +29,11 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
                         GenJournalBatch.Description := MotionBatchDescriptionLbl;
                         GenJournalBatch.Insert(true);
                     end;
+                    Rec.LBSMotionJournalBatchName := rec.LBSMotionJournalTemplateName;
                 end;
             end;
         }
-        field(76001; LBSMotionJournalBatchName; Code[10])
+        field(76051; LBSMotionJournalBatchName; Code[10])
         {
             Caption = 'Journal Batch Name';
             ToolTip = 'Specifies the Journal Batch Name to be used';
@@ -41,7 +41,7 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
             TableRelation = "Gen. Journal Batch" where("Journal Template Name" = field(LBSMotionJournalTemplateName));
             AllowInCustomizations = Always;
         }
-        field(76002; LBSMotionAutomaticRelease; Boolean)
+        field(76052; LBSMotionAutomaticRelease; Boolean)
         {
             Caption = 'Automatic Releasse';
             ToolTip = 'Specifies if the journal should be automatic set to released.';

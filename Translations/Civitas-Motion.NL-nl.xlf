@@ -3,11 +3,35 @@
   <file datatype="xml" source-language="en-US" target-language="NL-nl" original="Civitas-Motion.g.xlf">
     <body>
       <group id="body">
+        <trans-unit id="Page 1343873695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Motion file Import</source>
+          <target>Motion bestand importeren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page LBSCivitasStartMotionImport - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="XmlPort 934133159 - NamedType 842212363" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import motion</source>
+          <target>Import Motion</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">XmlPort LBSCivitasImportMotion - NamedType ImportMotionFxd</note>
+        </trans-unit>
+        <trans-unit id="XmlPort 934133159 - NamedType 1278217849" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines succesfully imported and journal with documentno. %1 created</source>
+          <target>De regels zijn succesvol geimporteerd in dagboek %1. </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">XmlPort LBSCivitasImportMotion - NamedType LinesImportedAndJournalLinesCreatedMsg</note>
+        </trans-unit>
+        <trans-unit id="XmlPort 934133159 - NamedType 1859493219" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No lines imported</source>
+          <target>Er zijn geen regels geimporteerd.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">XmlPort LBSCivitasImportMotion - NamedType NoLinesImportedmsg</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2220523729 - NamedType 2850346842" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 2220523729">
           <source>Motion Journal</source>
           <target>Motion dagboek</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - NamedType MotionBatchDescriptionLbl</note>
         </trans-unit>
         <trans-unit id="TableExtension 2220523729 - Field 2501710577 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
@@ -50,7 +74,6 @@
           <source>EasyFunders Journal</source>
           <target>Motion dagboek</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionJournalTemplateName - Method OnValidate - NamedType EasyFundersBatchDescriptionLbl</note>
         </trans-unit>
       </group>
