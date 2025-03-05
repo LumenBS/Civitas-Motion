@@ -46,8 +46,12 @@ xmlport 76050 LBSCivitasImportMotion
                 var
                     GLAccount: Record "G/L Account";
                     Job: Record Job;
+                    JobTask: Record "Job Task";
                 begin
                     //Check  
+                    if Field4 = '' then
+                        currXMLport.Skip();
+
                     GLAccount.Get(Field4);
                     GLAccount.TestField(Blocked, false);
                     GLAccount.TestField("Account Type", GLAccount."Account Type"::Posting);
@@ -56,6 +60,9 @@ xmlport 76050 LBSCivitasImportMotion
                         Job.Get(Field3);
                         Job.TestField(Status, Job.Status::Open);
                         Job.TestBlocked();
+
+                        JobTask.Get(Job."No.", '10');
+                        JobTask.TestField(LBSBlocked, false);
                     end;
 
                     //Convert
