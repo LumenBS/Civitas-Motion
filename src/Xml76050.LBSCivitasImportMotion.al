@@ -55,6 +55,7 @@ xmlport 76050 LBSCivitasImportMotion
                     GLAccount.Get(Field4);
                     GLAccount.TestField(Blocked, false);
                     GLAccount.TestField("Account Type", GLAccount."Account Type"::Posting);
+                    GLAccount.TestField("Direct Posting", True);
 
                     if Field3 <> '' then begin
                         Job.Get(Field3);
@@ -125,7 +126,8 @@ xmlport 76050 LBSCivitasImportMotion
                 GenJournalLine.Description := GenJournalLine.Description;
                 GenJournalLine.Validate("Amount", GenJournalLineTemp.Amount);
                 GenJournalLine.Validate("Job No.", GenJournalLineTemp."Job No.");
-                GenJournalLine."Job Task No." := '10';
+                if GenJournalLine."Job No." <> '' then
+                    GenJournalLine."Job Task No." := '10';
                 GenJournalLine.Insert(true);
             until GenJournalLineTemp.Next = 0;
 
@@ -144,7 +146,6 @@ xmlport 76050 LBSCivitasImportMotion
             Message(StrSubstNo(LinesImportedAndJournalLinesCreatedMsg, NewDocNo));
         end else
             Message(NoLinesImportedMsg)
-
     end;
 
     var

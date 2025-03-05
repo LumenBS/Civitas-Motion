@@ -7,7 +7,6 @@
           <source>Motion file Import</source>
           <target>Motion bestand importeren</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page LBSCivitasStartMotionImport - Property Caption</note>
         </trans-unit>
         <trans-unit id="XmlPort 934133159 - NamedType 842212363" size-unit="char" translate="yes" xml:space="preserve">
