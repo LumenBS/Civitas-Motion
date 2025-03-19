@@ -16,7 +16,6 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
             Trigger OnValidate()
             var
                 GenJournalBatch: Record "Gen. Journal Batch";
-                EasyFundersBatchDescriptionLbl: Label 'EasyFunders Journal';
             begin
                 if Rec.LBSMotionJournalTemplateName <> '' then begin
                     GenJournalBatch.SetRange("Journal Template Name", Rec.LBSMotionJournalTemplateName);

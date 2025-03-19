@@ -16,5 +16,20 @@
             "enableSqlInformationDebugger": true,
             "schemaUpdateMode": "ForceSync",
         },
+        {
+            "name": "Sandbox Haarlem ACC",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "Sandbox",
+            "environmentName": "GemeenteHaarlem-ACC",
+            "tenant": "9cbd4621-be8a-478d-b84c-42e5a327a4b7",
+            "startupObjectId": 22,
+            "startupObjectType": "Page",
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "schemaUpdateMode": "ForceSync",
+        },
     ]
 }

@@ -52,19 +52,23 @@ xmlport 76050 LBSCivitasImportMotion
                     if Field4 = '' then
                         currXMLport.Skip();
 
-                    GLAccount.Get(Field4);
+                    Job.Init();
+
+                    if (copystr(Field4, 1, 1) = '4') or (copystr(Field4, 1, 1) = '8') then begin
+                        GLAccount.Get(Field4);
+                        if Field3 <> '' then begin
+                            Job.Get(Field3);
+                            Job.TestField(Status, Job.Status::Open);
+                            Job.TestBlocked();
+
+                            JobTask.Get(Job."No.", '10');
+                            JobTask.TestField(LBSBlocked, false);
+                        end;
+                    end else
+                        GLAccount.Get(Field3);
                     GLAccount.TestField(Blocked, false);
                     GLAccount.TestField("Account Type", GLAccount."Account Type"::Posting);
                     GLAccount.TestField("Direct Posting", True);
-
-                    if Field3 <> '' then begin
-                        Job.Get(Field3);
-                        Job.TestField(Status, Job.Status::Open);
-                        Job.TestBlocked();
-
-                        JobTask.Get(Job."No.", '10');
-                        JobTask.TestField(LBSBlocked, false);
-                    end;
 
                     //Convert
                     Field2 := copystr(field2, 7, 2) + copystr(field2, 5, 2) + copystr(field2, 1, 4);
@@ -78,7 +82,7 @@ xmlport 76050 LBSCivitasImportMotion
                     GenJournalLineTemp."Account No." := GLAccount."No.";
                     Evaluate(GenJournalLineTemp.Amount, Field8);
                     GenJournalLineTemp.Description := Field9;
-                    GenJournalLineTemp."Job No." := Field3;
+                    GenJournalLineTemp."Job No." := Job."No.";
                     GenJournalLineTemp.Insert();
                 end;
             }
@@ -127,9 +131,22 @@ xmlport 76050 LBSCivitasImportMotion
                 GenJournalLine.Validate("Amount", GenJournalLineTemp.Amount);
                 GenJournalLine.Validate("Job No.", GenJournalLineTemp."Job No.");
                 if GenJournalLine."Job No." <> '' then
-                    GenJournalLine."Job Task No." := '10';
+                    GenJournalLine.Validate("Job Task No.", '10');
+                if CivitasInterfaceSetup.LBSMotionAutomaticRelease then
+                    GenJournalLine.LBSApprovalStatus := GenJournalLine.LBSApprovalStatus::Released;
                 GenJournalLine.Insert(true);
             until GenJournalLineTemp.Next = 0;
+
+            //Check
+            if CivitasInterfaceSetup.LBSMotionAutomaticRelease then begin
+                GenJournalLine.Reset;
+                GenJournalLine.Setrange("Journal Template Name", CivitasInterfaceSetup.LBSMotionJournalTemplateName);
+                GenJournalLine.Setrange("Journal Batch Name", CivitasInterfaceSetup.LBSMotionJournalBatchName);
+                GenJournalLine.Setrange("Document No.", NewDocNo);
+                GenJournalLine.CalcSums(Amount);
+                if GenJournalLine.Amount <> 0 then
+                    Error(StrSubstNo(NotInBalanceErr, GenJournalLine.Amount));
+            end;
 
             //Create Journal Header
             if not GenJournalLineHeader.get(CivitasInterfaceSetup.LBSMotionJournalTemplateName, CivitasInterfaceSetup.LBSMotionJournalBatchName, NewDocNo) then begin
@@ -154,4 +171,5 @@ xmlport 76050 LBSCivitasImportMotion
         NoLinesImportedmsg: Label 'No lines imported';
         ImportMotionFxd: Label 'Import motion';
         LinesImportedAndJournalLinesCreatedMsg: Label 'Lines succesfully imported and journal with documentno. %1 created';
+        NotInBalanceErr: Label 'Lines are not in balance (%1) while automatic release is set. No lines imported.';
 }
