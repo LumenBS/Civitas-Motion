@@ -31,7 +31,6 @@
           <source>Lines are not in balance (%1) while automatic release is set. No lines imported.</source>
           <target>Er is een onbalans van %1. Bij automatisch vrijgeven moeten de regels in evenwicht zijn. De regels zijn niet geimporteerd.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">XmlPort LBSCivitasImportMotion - NamedType NotInBalanceErr</note>
         </trans-unit>
         <trans-unit id="TableExtension 2220523729 - NamedType 2850346842" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 2220523729">
@@ -51,6 +50,20 @@
           <target>Automatisch vrijgeven</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionAutomaticRelease - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 2476380266 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Specifies the Dimension Code</source>
+          <target>Hiermee kan de dimensiecode worden aangegeven welke gebruikt zal worden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionDimensionCode - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2220523729 - Field 2476380266 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
+          <source>Dimension Code</source>
+          <target>Dimensiecode</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Suggested translation inserted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension LBSCivitasMotionSetup - Field LBSMotionDimensionCode - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2220523729 - Field 817927179 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2568038049">
           <source>Specifies the Journal Batch Name to be used</source>

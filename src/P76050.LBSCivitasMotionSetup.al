@@ -23,6 +23,10 @@ pageextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
                 {
                     ApplicationArea = All;
                 }
+                field(LBSMotionDimensionCode; Rec.LBSMotionDimensionCode)
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

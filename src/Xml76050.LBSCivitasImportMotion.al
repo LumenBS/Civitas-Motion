@@ -1,5 +1,6 @@
 namespace CivitasMotion.CivitasMotion;
 using Microsoft.Finance.GeneralLedger.Journal;
+using Microsoft.Finance.Dimension;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Foundation.NoSeries;
 using Microsoft.Projects.Project.Job;
@@ -45,6 +46,7 @@ xmlport 76050 LBSCivitasImportMotion
                 trigger OnBeforeInsertRecord()
                 var
                     GLAccount: Record "G/L Account";
+                    DimensionValue: Record "Dimension Value";
                     Job: Record Job;
                     JobTask: Record "Job Task";
                 begin
@@ -66,12 +68,19 @@ xmlport 76050 LBSCivitasImportMotion
                         end;
                     end else
                         GLAccount.Get(Field3);
+
                     GLAccount.TestField(Blocked, false);
                     GLAccount.TestField("Account Type", GLAccount."Account Type"::Posting);
                     GLAccount.TestField("Direct Posting", True);
 
                     //Convert
                     Field2 := copystr(field2, 7, 2) + copystr(field2, 5, 2) + copystr(field2, 1, 4);
+
+                    //Check Dimension
+                    if Field5 <> '' then begin
+                        DimensionValue.Get(CivitasInterfaceSetup.LBSMotionDimensionCode, Field5);
+                        DimensionValue.TestField(Blocked, false);
+                    end;
 
                     //Create temp record
                     LineNo += 1;
@@ -83,6 +92,9 @@ xmlport 76050 LBSCivitasImportMotion
                     Evaluate(GenJournalLineTemp.Amount, Field8);
                     GenJournalLineTemp.Description := Field9;
                     GenJournalLineTemp."Job No." := Job."No.";
+
+                    //Use source field to transfer dimenionvalue
+                    GenJournalLineTemp."Source No." := Field5;
                     GenJournalLineTemp.Insert();
                 end;
             }
@@ -91,9 +103,10 @@ xmlport 76050 LBSCivitasImportMotion
 
     trigger OnPreXmlPort()
     begin
-        CivitasInterfaceSetup.get();
+        CivitasInterfaceSetup.Get();
         CivitasInterfaceSetup.TestField(LBSMotionJournalTemplateName);
         CivitasInterfaceSetup.TestField(LBSMotionJournalBatchName);
+        CivitasInterfaceSetup.TestField(LBSMotionDimensionCode);
     end;
 
     trigger OnPostXmlPort()
@@ -101,7 +114,10 @@ xmlport 76050 LBSCivitasImportMotion
         GenJournalLine: Record "Gen. Journal Line";
         GenJournalTemplate: Record "Gen. Journal Template";
         GenJournalLineHeader: Record LBSGenJournalLineHeader;
+        DimensionSetEntry: Record "Dimension Set Entry";
+        TempDimensionSetEntry: Record "Dimension Set Entry" temporary;
         NoSeriesMgt: Codeunit "No. Series";
+        DimMgt: Codeunit DimensionManagement;
         NewDocNo: Code[20];
     begin
         if GenJournalLineTemp.findfirst then begin
@@ -118,6 +134,8 @@ xmlport 76050 LBSCivitasImportMotion
 
             //Create Journal Lines
             repeat
+                TempDimensionSetEntry.DeleteAll();
+
                 LineNo += 10000;
                 GenJournalLine.Reset();
                 GenJournalLine.Validate("Journal Template Name", CivitasInterfaceSetup.LBSMotionJournalTemplateName);
@@ -134,6 +152,30 @@ xmlport 76050 LBSCivitasImportMotion
                     GenJournalLine.Validate("Job Task No.", '10');
                 if CivitasInterfaceSetup.LBSMotionAutomaticRelease then
                     GenJournalLine.LBSApprovalStatus := GenJournalLine.LBSApprovalStatus::Released;
+
+                if GenJournalLineTemp."Source No." <> '' then begin
+                    //Copy Existing Dimensions to Temp
+                    if GenJournalLine."Dimension Set ID" <> 0 then begin
+                        DimensionSetEntry.Setrange("Dimension Set ID", GenJournalLine."Dimension Set ID");
+                        if DimensionSetEntry.Findset() then
+                            repeat
+                                TempDimensionSetEntry.Init;
+                                TempDimensionSetEntry.Validate("Dimension Code", DimensionSetEntry."Dimension Code");
+                                TempDimensionSetEntry.Validate("Dimension Value Code", DimensionSetEntry."Dimension Value Code");
+                                if TempDimensionSetEntry.Insert() then;
+                            until DimensionSetEntry.Next = 0;
+                    end;
+
+                    //Copy Field5 value to temp
+                    TempDimensionSetEntry.Init;
+                    TempDimensionSetEntry.Validate("Dimension Code", CivitasInterfaceSetup.LBSMotionDimensionCode);
+                    TempDimensionSetEntry.Validate("Dimension Value Code", GenJournalLineTemp."Source No.");
+                    if TempDimensionSetEntry.Insert() then;
+
+                    GenJournalLine."Dimension Set ID" := DimMgt.GetDimensionSetID(TempDimensionSetEntry);
+                    GenJournalLine.VALIDATE("Dimension Set ID");
+                end;
+
                 GenJournalLine.Insert(true);
             until GenJournalLineTemp.Next = 0;
 

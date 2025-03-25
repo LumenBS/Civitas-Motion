@@ -1,5 +1,6 @@
 namespace CivitasMotion.CivitasMotion;
 using Microsoft.Finance.GeneralLedger.Journal;
+using Microsoft.Finance.Dimension;
 
 tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
 {
@@ -44,6 +45,14 @@ tableextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
         {
             Caption = 'Automatic Releasse';
             ToolTip = 'Specifies if the journal should be automatic set to released.';
+            DataClassification = SystemMetadata;
+            AllowInCustomizations = Always;
+        }
+        field(76053; LBSMotionDimensionCode; Code[20])
+        {
+            Caption = 'Dimension Code';
+            ToolTip = 'Specifies the Dimension Code';
+            TableRelation = Dimension.code;
             DataClassification = SystemMetadata;
             AllowInCustomizations = Always;
         }
