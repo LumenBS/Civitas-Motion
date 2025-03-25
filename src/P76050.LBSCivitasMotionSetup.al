@@ -19,11 +19,11 @@ pageextension 76050 LBSCivitasMotionSetup extends LBSInterfaceSetup
                     ApplicationArea = All;
                     Importance = Additional;
                 }
-                field(LBSMotionAutomaticRelease; Rec.LBSMotionAutomaticRelease)
+                field(LBSMotionDimensionCode; Rec.LBSMotionDimensionCode)
                 {
                     ApplicationArea = All;
                 }
-                field(LBSMotionDimensionCode; Rec.LBSMotionDimensionCode)
+                field(LBSMotionAutomaticRelease; Rec.LBSMotionAutomaticRelease)
                 {
                     ApplicationArea = All;
                 }
